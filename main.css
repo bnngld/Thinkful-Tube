@@ -1,0 +1,11 @@
+body {
+    text-align: center;
+}
+
+h1, form {
+    margin: 15px;
+}
+
+img {
+    border: 1px solid black;
+}
