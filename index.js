@@ -19,17 +19,18 @@ function getData(userInput, callback) {
 
   function displayResults(item) {
     return `
-    <span class="js-thumbnail">
-      <a href="https://www.youtube.com/watch?v=${item.id.videoId}"><img src="${item.snippet.thumbnails.medium.url}"></a>
+    <section class=".js-search-results">
+      <a href="https://www.youtube.com/watch?v=${item.id.videoId}" target="_blank"><input type="image" src="${item.snippet.thumbnails.medium.url}" alt="${item.snippet.title}"/></a>
       <h3>${item.snippet.title}</h3>
-      <h4><a href="https://www.youtube.com/channel/${item.snippet.channelId}/videos">Channel: ${item.snippet.channelTitle}</a>
-    </span>
+      <a href="https://www.youtube.com/channel/${item.snippet.channelId}/videos" target="_blank"><h4>YouTube Channel: ${item.snippet.channelTitle}</h4></a>
+    </section>
   `;
 }
 
 function displayYouTubeData(data) {
+  const numberofresults = `<h3 aria-live="assertive" role="alert">Number Of Results: ${data.pageInfo.totalResults}</h3>`;
   const result = data.items.map((item, i) => displayResults(item));
-  $('.js-search-results').append(result);
+  $('.js-result-container').append(numberofresults, result).prop('hidden', false);
 }
 
 function userSubmit() {
